@@ -1,4 +1,13 @@
 $NetBSD: distinfo,v 1.1.1.1 2007/08/12 01:54:42 dvol Exp $
 
-RMD160 (terminal.app_0.9.4+cvs20051125.orig.tar.gz) = 054a6fe07cfd6724ffac40c372b7cc22ebebdd4f
-Size (terminal.app_0.9.4+cvs20051125.orig.tar.gz) = 71656 bytes
+BLAKE2s (terminal.app/terminal.app_0.9.9.orig.tar.gz) = 23566c8ec0611a9367d641523f9fba67a98d94090677309193a84bbc61994584
+SHA512 (terminal.app/terminal.app_0.9.9.orig.tar.gz) = 456b0755ee6751eb3ef1c5e62e969b6981f7874cb358e071fc7edda93b2ebc698224c990ba4335aa62a7acefb9085723e924d1311c96ae8d34d0f8b2c7c920a3
+Size (terminal.app/terminal.app_0.9.9.orig.tar.gz) = 88762 bytes
+SHA1 (patch-Terminal.h) = 4bd505cc72519aa3d90983419a5a5a6bad2e74c5
+SHA1 (patch-TerminalParser_Linux.h) = 319e198ea8a634674b6c2a5c0f69a27a560c7726
+SHA1 (patch-TerminalParser_Linux.m) = c4dc1217d844fc6439b09be723b40ff3a22d04c5
+SHA1 (patch-TerminalParser_LinuxPrefs.m) = cfc825198eb6e8aa36dabcd2cc3e3d2d66f2bc82
+SHA1 (patch-TerminalView.h) = 29243a59945447878a853674c572f0a5993754bd
+SHA1 (patch-TerminalView.m) = 4758092a0b5d9fbf59fc8dd34fee315567e1ea4b
+SHA1 (patch-TerminalWindow.h) = 1ab21191ab87bd84f00dc5e26ecd5259fa873eba
+SHA1 (patch-main.m) = fb981d0141b6e8625b7f94d6c85523cec62e9a86
