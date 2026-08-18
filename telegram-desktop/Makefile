@@ -3,7 +3,7 @@
 GITHUB_PROJECT=		tdesktop
 GITHUB_RELEASE=		v${TD_VERSION}
 DIST_SUBDIR=		tdesktop
-TD_VERSION=		7.0.6
+TD_VERSION=		7.0.9
 DISTNAME=		tdesktop-${TD_VERSION}-full
 PKGNAME=		telegram-desktop-${TD_VERSION}
 CATEGORIES=		chat
@@ -28,28 +28,6 @@ CMAKE_CONFIGURE_ARGS+=	-DDESKTOP_APP_DISABLE_CRASH_REPORTS=ON
 CMAKE_CONFIGURE_ARGS+=	-DDESKTOP_APP_DISABLE_AUTOUPDATE=ON
 CMAKE_CONFIGURE_ARGS+=	-DLINUX=ON
 
-.include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} == "NetBSD"
-CMAKE_CONFIGURE_ARGS+=	-DCMAKE_PREFIX_PATH=${PREFIX}/qt6
-
-pre-configure:
-	${LN} -sf ${PREFIX}/qt6/include/QtSvg ${BUILDLINK_DIR}/include/QtSvg
-	${LN} -sf ${PREFIX}/qt6/include/QtQuickWidgets ${BUILDLINK_DIR}/include/QtQuickWidgets
-	${LN} -sf ${PREFIX}/qt6/include/QtQuick ${BUILDLINK_DIR}/include/QtQuick
-	${LN} -sf ${PREFIX}/qt6/include/QtQml ${BUILDLINK_DIR}/include/QtQml
-	${LN} -sf ${PREFIX}/qt6/include/QtWaylandCompositor ${BUILDLINK_DIR}/include/QtWaylandCompositor
-	${LN} -sf ${PREFIX}/qt6/include/QtQmlIntegration ${BUILDLINK_DIR}/include/QtQmlIntegration
-	${LN} -sf ${PREFIX}/qt6/include/QtSvg/QSvgRenderer ${BUILDLINK_DIR}/include/QSvgRenderer
-.  for lib in Qt6Svg Qt6QuickWidgets Qt6Quick Qt6Qml Qt6WaylandCompositor
-	${LN} -sf ${PREFIX}/qt6/lib/lib${lib}.so ${BUILDLINK_DIR}/lib/lib${lib}.so
-.  endfor
-	${LN} -sf ${PREFIX}/lib/libwayland-server.so ${BUILDLINK_DIR}/lib/libwayland-server.so
-	${LN} -sf ${PREFIX}/lib/libsrtp2.so ${BUILDLINK_DIR}/lib/libsrtp2.so
-	${LN} -sf ${PREFIX}/lib/librhash.so ${BUILDLINK_DIR}/lib/librhash.so
-	${LN} -sf ${PREFIX}/lib/libboost_regex.so ${BUILDLINK_DIR}/lib/libboost_regex.so
-.endif
-
 .include "options.mk"
 .include "../../devel/cmake/build.mk"
 .include "../../devel/protobuf/buildlink3.mk"
@@ -73,12 +51,17 @@ pre-configure:
 .include "../../multimedia/ffmpeg6/buildlink3.mk"
 .include "../../multimedia/libva/buildlink3.mk"
 .include "../../x11/qt6-qtbase/buildlink3.mk"
+.include "../../graphics/qt6-qtsvg/buildlink3.mk"
+.include "../../lang/qt6-qtdeclarative/buildlink3.mk"
+.include "../../devel/qt6-qtwayland/buildlink3.mk"
+.include "../../devel/wayland/buildlink3.mk"
 .include "../../wip/ada-url/buildlink3.mk"
 .include "../../wip/rlottie/buildlink3.mk"
 .include "../../wip/tde2e/buildlink3.mk"
 .include "../../wip/tg_owt-git/buildlink3.mk"
 .include "../../wip/libyuv-git/buildlink3.mk"
 .include "../../multimedia/openh264/buildlink3.mk"
+.include "../../security/libfido2/buildlink3.mk"
 .include "../../x11/libXtst/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

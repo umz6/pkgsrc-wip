@@ -5,7 +5,7 @@ if (LINUX) guards throughout the build system work correctly.
 
 --- cmake/options.cmake.orig	2026-07-27 20:19:00.000000000 +0000
 +++ cmake/options.cmake
-@@ -14,7 +14,8 @@ target_compile_definitions(common_options
+@@ -14,8 +14,9 @@ target_compile_definitions(common_options
  if (WIN32)
      include(cmake/options_win.cmake)
  elseif (APPLE)

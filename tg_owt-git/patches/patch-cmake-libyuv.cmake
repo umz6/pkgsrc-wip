@@ -4,18 +4,23 @@ Use system libyuv instead of bundled submodule (empty in GitHub tarball).
 Create symlinks in src/third_party/libyuv/include so source files
 referencing bundled include paths resolve to system headers.
 
---- cmake/libyuv.cmake.orig
+Wrap the interface include dir and library in BUILD_INTERFACE/INSTALL_INTERFACE
+generator expressions so the installed CMake export does not bake absolute
+pkgsrc WRKDIR buildlink paths into tg_owtTargets.cmake; consumers link
+libyuv via their own buildlink3.mk instead.
+
+--- cmake/libyuv.cmake.orig	2026-04-09 10:24:34.000000000 +0300
 +++ cmake/libyuv.cmake
-@@ -1,158 +1,26 @@
+@@ -1,158 +1,27 @@
 -add_library(libyuv OBJECT EXCLUDE_FROM_ALL)
 -init_target(libyuv)
 +add_library(libyuv INTERFACE)
  add_library(tg_owt::libyuv ALIAS libyuv)
- 
+
 -link_libjpeg(libyuv)
 +find_path(LIBYUV_INCLUDE_DIR libyuv.h PATH_SUFFIXES libyuv)
 +find_library(LIBYUV_LIBRARY NAMES yuv)
- 
+
 -set(libyuv_loc ${third_party_loc}/libyuv)
 -
 -nice_target_sources(libyuv ${libyuv_loc}
@@ -107,9 +112,9 @@ referencing bundled include paths resolve to system headers.
 -    source/scale_rvv.cc
 +target_include_directories(libyuv
 +INTERFACE
-+    ${LIBYUV_INCLUDE_DIR}
++    $<BUILD_INTERFACE:${LIBYUV_INCLUDE_DIR}>
  )
- 
+
 -remove_target_sources(libyuv ${libyuv_loc}
 -
 -    # MSA Source Files
@@ -119,9 +124,10 @@ referencing bundled include paths resolve to system headers.
 -    source/scale_msa.cc
 +target_link_libraries(libyuv
 +INTERFACE
-+    ${LIBYUV_LIBRARY}
++    $<BUILD_INTERFACE:${LIBYUV_LIBRARY}>
++    $<INSTALL_INTERFACE:yuv>
  )
- 
+
 -if (arm_use_neon)
 -    target_compile_definitions(libyuv
 -    PRIVATE

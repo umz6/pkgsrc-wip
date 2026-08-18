@@ -6,7 +6,7 @@ Size (tg_owt/89df288dd6ba5b2ec95b3c5eaf1e7e0c3a870fc4-89df288dd6ba5b2ec95b3c5eaf
 SHA1 (patch-CMakeLists.txt) = 24bd834e2a2facc03d7b47eb603b48bfa87aaaf0
 SHA1 (patch-cmake-libcrc32c.cmake) = 1cdf0788a5dc5b00eeaf9b7150e05fe0befa30b5
 SHA1 (patch-cmake-libwebrtcbuild.cmake) = cb2bb6e7855545c356dfea3cc54eda1b061843b0
-SHA1 (patch-cmake-libyuv.cmake) = bccbafbf75727aecb611dd8ea704b946fef4dd5c
+SHA1 (patch-cmake-libyuv.cmake) = 41bb94246caeb0480f0e77254f1a9b19ba6e093b
 SHA1 (patch-src-api-video-i010_buffer.cc) = a6d6423402be27ff57dc9e108d1177b48bf527c4
 SHA1 (patch-src-api-video-i210_buffer.cc) = 13ba48d51dbf82a0fc8ae9592a37da50254955dd
 SHA1 (patch-src-api-video-i410_buffer.cc) = 761438fe45e8c6b1ba39f4843b8bfbb3216e9caf
